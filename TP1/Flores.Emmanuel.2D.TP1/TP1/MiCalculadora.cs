@@ -10,12 +10,16 @@ using System.Windows.Forms;
 
 namespace TP1
 {
-    public partial class Form1 : Form
+    public partial class MiCalculadora : Form
     {
-        public Form1()
+        public MiCalculadora()
         {
             InitializeComponent();
         }
 
+        private void MiCalculadora_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
