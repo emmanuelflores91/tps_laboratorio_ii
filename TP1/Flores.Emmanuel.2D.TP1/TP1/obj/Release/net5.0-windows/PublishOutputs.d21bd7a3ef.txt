@@ -1,0 +1,7 @@
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\MiCalculadora.exe
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\MiCalculadora.dll
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\MiCalculadora.deps.json
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\MiCalculadora.runtimeconfig.json
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\MiCalculadora.pdb
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\Entidades.dll
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\Entidades.pdb

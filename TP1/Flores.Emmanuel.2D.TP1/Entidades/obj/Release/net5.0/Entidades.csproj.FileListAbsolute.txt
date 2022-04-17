@@ -1,0 +1,12 @@
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\Flores.Emmanuel.2D.TP1\Entidades\bin\Release\net5.0\Entidades.deps.json
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\Flores.Emmanuel.2D.TP1\Entidades\bin\Release\net5.0\Entidades.dll
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\Flores.Emmanuel.2D.TP1\Entidades\bin\Release\net5.0\Entidades.pdb
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\Flores.Emmanuel.2D.TP1\Entidades\obj\Release\net5.0\Entidades.csproj.AssemblyReference.cache
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\Flores.Emmanuel.2D.TP1\Entidades\obj\Release\net5.0\Entidades.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\Flores.Emmanuel.2D.TP1\Entidades\obj\Release\net5.0\Entidades.AssemblyInfoInputs.cache
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\Flores.Emmanuel.2D.TP1\Entidades\obj\Release\net5.0\Entidades.AssemblyInfo.cs
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\Flores.Emmanuel.2D.TP1\Entidades\obj\Release\net5.0\Entidades.csproj.CoreCompileInputs.cache
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\Flores.Emmanuel.2D.TP1\Entidades\obj\Release\net5.0\Entidades.dll
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\Flores.Emmanuel.2D.TP1\Entidades\obj\Release\net5.0\refint\Entidades.dll
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\Flores.Emmanuel.2D.TP1\Entidades\obj\Release\net5.0\Entidades.pdb
+D:\OneDrive\Study\02 UTN\Progra-Labo II\TPS\TP1\Flores.Emmanuel.2D.TP1\Entidades\obj\Release\net5.0\ref\Entidades.dll
