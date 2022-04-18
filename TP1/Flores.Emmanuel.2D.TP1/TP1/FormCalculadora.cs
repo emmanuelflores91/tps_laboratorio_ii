@@ -13,7 +13,7 @@ namespace TP1
 {
     public partial class FormCalculadora : Form
     {
-        StringBuilder Historial = new StringBuilder();  
+
         public FormCalculadora()
         {
             InitializeComponent();
@@ -22,7 +22,8 @@ namespace TP1
         private void MiCalculadora_Load(object sender, EventArgs e)
         {
             btnLimpiar_Click(sender, e);
-        }             
+            this.alertIcon.Visible = false;
+        }
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -31,111 +32,139 @@ namespace TP1
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             Limpiar();
-            this.btnConvertirABinario.Enabled = true;
-            this.btnConvertirADecimal.Enabled = true;
+            this.btnConvertirABinario.Enabled = false;
+            this.btnConvertirADecimal.Enabled = false;
+            this.alertIcon.Visible = false;
         }
         private void Limpiar()
         {
             this.txtNumero1.Text = "";
             this.txtNumero2.Text = "";
             this.lblResultado.Text = "";
-            this.cmbOperador.SelectedIndex = 0;            
+            this.cmbOperador.SelectedIndex = 0;
         }
 
         private double Operar(string numero1, string numero2, string operador)
         {
             Operando operando1 = new Operando(numero1);
-            Operando operando2 = new Operando(numero2);            
+            Operando operando2 = new Operando(numero2);
             char operadorChar;
-            char.TryParse(operador, out operadorChar);          
-            
-            double resultado = Calculadora.Operar(operando1, operando2, operadorChar);       
+            char.TryParse(operador, out operadorChar);
 
-            return resultado;            
+            double resultado = Calculadora.Operar(operando1, operando2, operadorChar);
+
+            return resultado;
         }
 
         private void btnOperar_Click(object sender, EventArgs e)
         {
-            string operando1 = this.txtNumero1.Text;
-            string operando2 = this.txtNumero2.Text;
+            StringBuilder Historial = new StringBuilder();
+
+            string operando1 = this.txtNumero1.Text.Replace('.', ',');
+
+            string operando2 = this.txtNumero2.Text.Replace('.', ',');
+
             string operador = this.cmbOperador.Text;
+            this.lblResultado.ForeColor = Color.DarkCyan;
 
-          if(string.IsNullOrWhiteSpace(operando1) ||
-             string.IsNullOrWhiteSpace(operando2) ||
-             string.IsNullOrWhiteSpace(operador))
+            if (string.IsNullOrWhiteSpace(operando1) ||
+               string.IsNullOrWhiteSpace(operando2) ||
+               string.IsNullOrWhiteSpace(operador))
             {
-                MessageBox.Show("Faltan datos","Operación fallida",MessageBoxButtons.RetryCancel ,MessageBoxIcon.Warning);
+                this.lblResultado.ForeColor = Color.DarkRed;
+                this.lblResultado.Text = "Faltan datos.";
+                this.btnConvertirADecimal.Enabled = false;
+                this.btnConvertirABinario.Enabled = false;
+                this.alertIcon.Visible = true;
             }
-          else
+            else
             {
-            double resultado = Operar(operando1, operando2, operador);
+                if (double.TryParse(operando1, out double auxiliar) &&
+                    double.TryParse(operando2, out auxiliar))
+                {
+                    double resultado = Operar(operando1, operando2, operador);
+                    if (resultado == double.MinValue)
+                    {
+                        this.lblResultado.ForeColor = Color.DarkRed;
+                        this.lblResultado.Text = "No se admite división por cero.";
+                        this.alertIcon.Visible = true;
+                        this.btnConvertirABinario.Enabled = false;
+                        this.btnConvertirADecimal.Enabled = false;
+                    }
+                    else
+                    {
+                        this.lblResultado.Text = resultado.ToString();
 
-            this.lblResultado.Text = resultado.ToString();
+                        Historial.AppendLine($"{operando1} {operador} {operando2} = {resultado.ToString()}");
 
-            Historial.AppendLine($"{operando1} {operador} {operando2} = {resultado.ToString()}");
+                        this.lstOperaciones.Items.Add(Historial);
+                        Historial.Clear();
+                        this.btnConvertirABinario.Enabled = true;
+                        this.btnConvertirADecimal.Enabled = false;
+                        this.alertIcon.Visible = false;
+                    }
 
-            this.lstOperaciones.Items.Add(Historial);
-            Historial.Clear();
-
+                }
+                else
+                {
+                    this.lblResultado.ForeColor = Color.DarkRed;
+                    this.lblResultado.Text = "Se ingresaron caracteres no admitidos.";
+                    this.btnConvertirADecimal.Enabled = false;
+                    this.btnConvertirABinario.Enabled = false;
+                    this.alertIcon.Visible = true;
+                }
             }
 
         }
 
         private void btnConvertirADecimal_Click(object sender, EventArgs e)
         {
-            string resultado = this.lblResultado.Text;            
-            string resultadoEnBinario;       
+            StringBuilder Historial = new StringBuilder();
+            string resultado = this.lblResultado.Text;
+            string resultadoEnDecimal;
 
-            if(!(string.IsNullOrWhiteSpace(resultado)))
-            {
-                resultadoEnBinario = Operando.BinarioDecimal(resultado);
-                this.lblResultado.Text = resultadoEnBinario;
-                Historial.AppendLine($"{resultado} = {resultadoEnBinario}");
-                this.lstOperaciones.Items.Add(Historial);
-                Historial.Clear();
-                this.btnConvertirABinario.Enabled = true;
-                this.btnConvertirADecimal.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("No se calculó el resultado","Operación fallida",MessageBoxButtons.RetryCancel ,MessageBoxIcon.Warning);
-            }
+            resultadoEnDecimal = Operando.BinarioDecimal(resultado);
+
+            this.lblResultado.Text = resultadoEnDecimal;
+            Historial.AppendLine($"{resultado} = {resultadoEnDecimal}");
+            this.lstOperaciones.Items.Add(Historial);
+            Historial.Clear();
+            this.btnConvertirABinario.Enabled = true;
+            this.btnConvertirADecimal.Enabled = false;
+
         }
 
         private void btnConvertirABinario_Click(object sender, EventArgs e)
         {
+            StringBuilder Historial = new StringBuilder();
             string resultado = this.lblResultado.Text;
             string resultadoEnBinario;
 
-            if (!(string.IsNullOrWhiteSpace(resultado)) && resultado.All(char.IsDigit))
-            {
-                resultadoEnBinario = Operando.DecimalBinario(resultado);
-                this.lblResultado.Text = resultadoEnBinario;
-                Historial.AppendLine($"{resultado} = {resultadoEnBinario}");
-                this.lstOperaciones.Items.Add(Historial);
-                Historial.Clear();
-                this.btnConvertirABinario.Enabled = false;
-                this.btnConvertirADecimal.Enabled = true;
-            }
-            else
-            {
-                MessageBox.Show("No se calculó el resultado", "Operación fallida", MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning);
-            }
+            resultadoEnBinario = Operando.DecimalBinario(resultado);
 
-        }        
+            this.lblResultado.Text = resultadoEnBinario;
+            Historial.AppendLine($"{resultado} = {resultadoEnBinario}");
+            this.lstOperaciones.Items.Add(Historial);
+            Historial.Clear();
+            this.btnConvertirABinario.Enabled = false;
+            this.btnConvertirADecimal.Enabled = true;
+
+
+        }
 
         private void FormCalculadora_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
-                DialogResult respuesta = MessageBox.Show("¿Está seguro de querer salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult respuesta = MessageBox.Show("¿Está seguro de querer salir?", 
+                                         "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (respuesta == DialogResult.No)
+                if (respuesta != DialogResult.Yes)
                 {
                     e.Cancel = true;
                 }
             }
-            
+
         }
     }
 }

@@ -80,51 +80,57 @@ namespace Entidades
 
         public static string BinarioDecimal(string binario)
         {
-            double NumeroDecimal = 0;
+            double numeroDouble= 0;
 
             if (EsBinario(binario))
             {
-                
                 int posicion = 0;
                 int longitud = binario.Length;
-                int binarioEntero;
+                int digitoEntero;
 
                 for (int i = longitud - 1; i >= 0; i--)
                 {
-                    binarioEntero = int.Parse(binario[i].ToString());
-                    NumeroDecimal += binarioEntero * (Math.Pow(2, posicion));
+                    digitoEntero = int.Parse(binario[i].ToString());
+                    numeroDouble += digitoEntero * (Math.Pow(2, posicion));
                     posicion++;
                 }
-                return NumeroDecimal.ToString();
+                int numeroEntero = (int) numeroDouble;
+                return numeroEntero.ToString();
             }
 
             return "Valor inválido";
         }
 
         public static string DecimalBinario(string numero)
-        { 
-            return DecimalBinario(double.Parse(numero));
+        {
+            if (double.TryParse(numero, out double numeroDouble))
+            {
+                return DecimalBinario(numeroDouble);              
+
+            }
+            
+            return "Valor inválido";
         }
         public static string DecimalBinario(double numero)
         {
             double resto;
-            double cociente;
-            cociente = Math.Abs(numero);
+            int cociente;
+            cociente = (int)Math.Abs(numero);
             StringBuilder numeroBinario = new StringBuilder();
             StringBuilder restosBinarios = new StringBuilder();
             int longitud;
             string auxiliarRestos;            
 
-            if (numero == 0 || numero == 1)
+            if ( cociente == 0 || cociente == 1)
             {
-                return numero.ToString();
+                return cociente.ToString();
             }
             else
             { 
                 while (cociente >= 1)
                 {
                     resto = cociente % 2;
-                    cociente -= resto;
+                    cociente -= (int)resto;
                     cociente /= 2;
                     restosBinarios.Append(resto.ToString());
                 }

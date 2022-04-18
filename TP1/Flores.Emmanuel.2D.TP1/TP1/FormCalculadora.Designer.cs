@@ -40,7 +40,9 @@
             this.lstOperaciones = new System.Windows.Forms.ListBox();
             this.lblResultado = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.alertIcon = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.alertIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNumero1
@@ -77,11 +79,14 @@
             // 
             // cmbOperador
             // 
-            this.cmbOperador.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.cmbOperador.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbOperador.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cmbOperador.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbOperador.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cmbOperador.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cmbOperador.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cmbOperador.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cmbOperador.ForeColor = System.Drawing.Color.Black;
             this.cmbOperador.Items.AddRange(new object[] {
             "",
             "+",
@@ -171,23 +176,25 @@
             this.lstOperaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstOperaciones.ForeColor = System.Drawing.Color.DarkCyan;
             this.lstOperaciones.FormattingEnabled = true;
+            this.lstOperaciones.HorizontalScrollbar = true;
             this.lstOperaciones.ItemHeight = 25;
             this.lstOperaciones.Location = new System.Drawing.Point(726, 123);
             this.lstOperaciones.Margin = new System.Windows.Forms.Padding(4);
             this.lstOperaciones.Name = "lstOperaciones";
             this.lstOperaciones.Size = new System.Drawing.Size(273, 327);
             this.lstOperaciones.TabIndex = 10;
+            this.lstOperaciones.TabStop = false;
+            this.lstOperaciones.UseTabStops = false;
             // 
             // lblResultado
             // 
-            this.lblResultado.AutoSize = true;
             this.lblResultado.BackColor = System.Drawing.Color.Transparent;
-            this.lblResultado.Font = new System.Drawing.Font("Arial Rounded MT Bold", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblResultado.Font = new System.Drawing.Font("Arial Rounded MT Bold", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblResultado.ForeColor = System.Drawing.Color.DarkCyan;
-            this.lblResultado.Location = new System.Drawing.Point(276, 15);
+            this.lblResultado.Location = new System.Drawing.Point(4, 15);
             this.lblResultado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblResultado.Name = "lblResultado";
-            this.lblResultado.Size = new System.Drawing.Size(139, 46);
+            this.lblResultado.Size = new System.Drawing.Size(629, 46);
             this.lblResultado.TabIndex = 9;
             this.lblResultado.Text = "label1";
             this.lblResultado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -199,7 +206,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(637, 74);
             this.panel1.TabIndex = 11;
-            this.panel1.TabStop = true;
+            // 
+            // alertIcon
+            // 
+            this.alertIcon.BackColor = System.Drawing.Color.Transparent;
+            this.alertIcon.Image = ((System.Drawing.Image)(resources.GetObject("alertIcon.Image")));
+            this.alertIcon.InitialImage = ((System.Drawing.Image)(resources.GetObject("alertIcon.InitialImage")));
+            this.alertIcon.Location = new System.Drawing.Point(336, 52);
+            this.alertIcon.Name = "alertIcon";
+            this.alertIcon.Size = new System.Drawing.Size(48, 48);
+            this.alertIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.alertIcon.TabIndex = 12;
+            this.alertIcon.TabStop = false;
             // 
             // FormCalculadora
             // 
@@ -209,6 +227,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1016, 530);
+            this.Controls.Add(this.alertIcon);
             this.Controls.Add(this.cmbOperador);
             this.Controls.Add(this.txtNumero2);
             this.Controls.Add(this.txtNumero1);
@@ -231,7 +250,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormCalculadora_FormClosing);
             this.Load += new System.EventHandler(this.MiCalculadora_Load);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.alertIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,5 +268,6 @@
         private System.Windows.Forms.Label lblResultado;
         public System.Windows.Forms.TextBox txtNumero1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox alertIcon;
     }
 }
